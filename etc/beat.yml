@@ -1,0 +1,6 @@
+metricbeat:
+  modules:
+    disk:
+      metricsets:
+        space:
+          period: 1s

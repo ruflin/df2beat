@@ -1,0 +1,8 @@
+package: github.com/ruflin/df2beat
+import:
+- package: github.com/elastic/beats
+  subpackages:
+  - /libbeat/beat
+  - metricbeat/beater
+  - metricbeat/helper
+  - metricbeat/include
