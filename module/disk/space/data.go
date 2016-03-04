@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/elastic/gosigar"
+	sigar "github.com/elastic/gosigar"
 	"github.com/elastic/beats/libbeat/common"
 )
 

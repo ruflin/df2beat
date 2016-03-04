@@ -5,6 +5,7 @@ import (
 
 	"github.com/elastic/beats/metricbeat/beater"
 	_ "github.com/ruflin/df2beat/module/disk/space"
+	_ "github.com/ruflin/df2beat/module/disk"
 
 	"github.com/elastic/beats/libbeat/beat"
 )

@@ -1,3 +1,7 @@
-df2beat
+# Folders
 .idea
 vendor
+
+# Files
+df2beat
+glide.lock

@@ -1,32 +1,15 @@
 package disk
 
 import (
-
 	"github.com/elastic/beats/metricbeat/helper"
 )
 
 func init() {
-	Module.Register()
+	helper.Registry.AddModuler("disk", Moduler{})
 }
 
-var Module = helper.NewModule("disk", Disk{})
+type Moduler struct {}
 
-var Config = &ApacheModuleConfig{}
-
-type ApacheModuleConfig struct {
-	Metrics map[string]interface{}
-	Hosts   []string
-}
-
-type Disk struct {
-	Name   string
-	Config ApacheModuleConfig
-}
-
-func (r Disk) Setup() error {
-
-	// Loads module config
-	// This is module specific config object
-	//Module.LoadConfig(&Config)
+func (r Moduler) Setup() error {
 	return nil
 }

@@ -1,9 +1,11 @@
 metricbeat:
   modules:
-    disk:
-      metricsets:
-        space:
-          period: 1s###############################################################################
+    - module: disk
+      metricsets: ["space"]
+      period: 1s
+      enabled: true
+
+###############################################################################
 ############################# Libbeat Config ##################################
 # Base config file used by all other beats for using libbeat features
 
@@ -193,6 +195,17 @@ shipper:
   # logical properties.
   #tags: ["service-X", "web-tier"]
 
+  # Optional fields that you can specify to add additional information to the
+  # output. Fields can be scalar values, arrays, dictionaries, or any nested
+  # combination of these. 
+  #fields:
+  #  env: staging
+
+  # If this option is set to true, the custom fields are stored as top-level
+  # fields in the output document instead of being grouped under a fields
+  # sub-dictionary. Default is false.
+  #fields_under_root: false
+
   # Uncomment the following if you want to ignore transactions created
   # by the server on which the shipper is installed. This option is useful
   # to remove duplicates if shippers are installed on multiple servers.
@@ -209,6 +222,10 @@ shipper:
 
   # Internal queue size for single events in processing pipeline
   #queue_size: 1000
+
+  # Sets the maximum number of CPUs that can be executing simultaneously. The
+  # default is the number of logical CPUs available in the system.
+  #max_procs:
 
   # Configure local GeoIP database support.
   # If no paths are not configured geoip is disabled.

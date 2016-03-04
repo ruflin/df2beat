@@ -1,6 +1,7 @@
 metricbeat:
   modules:
-    disk:
-      metricsets:
-        space:
-          period: 1s
+    - module: disk
+      metricsets: ["space"]
+      period: 1s
+      enabled: true
+

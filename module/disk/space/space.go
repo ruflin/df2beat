@@ -1,35 +1,19 @@
 package space
 
 import (
-	//"fmt"
-
 	"github.com/elastic/beats/libbeat/common"
-	//"github.com/elastic/beats/libbeat/logp"
 	"github.com/elastic/beats/metricbeat/helper"
-
-	"github.com/ruflin/df2beat/module/disk"
 )
 
 func init() {
-	MetricSet.Register()
+	helper.Registry.AddMetricSeter("disk", "space", &MetricSeter{})
 }
 
-var MetricSet = helper.NewMetricSet("space", MetricSeter{}, disk.Module)
+type MetricSeter struct {}
 
-type MetricSeter struct {
-}
-
-func (m MetricSeter) Setup() error {
-	return nil
-}
-
-func (m MetricSeter) Fetch() (events []common.MapStr, err error) {
+func (m *MetricSeter) Fetch(ms *helper.MetricSet) (events []common.MapStr, err error) {
 
 	events = eventMapping()
 
 	return events, nil
-}
-
-func (m MetricSeter) Cleanup() error {
-	return nil
 }
