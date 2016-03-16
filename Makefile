@@ -7,18 +7,32 @@ GOPACKAGES=$(shell glide novendor)
 PREFIX?=.
 
 # Path to the libbeat Makefile
-include $(ES_BEATS)/libbeat/scripts/Makefile
+-include $(ES_BEATS)/libbeat/scripts/Makefile
 
-.PHONY: install-cfg
-install-cfg:
-	mkdir -p $(PREFIX)
-	cp etc/{{cookiecutter.beat}}.template.json     $(PREFIX)/{{cookiecutter.beat}}.template.json
-	cp etc/{{cookiecutter.beat}}.yml               $(PREFIX)/{{cookiecutter.beat}}.yml
-	cp etc/{{cookiecutter.beat}}.yml               $(PREFIX)/{{cookiecutter.beat}}-linux.yml
-	cp etc/{{cookiecutter.beat}}.yml               $(PREFIX)/{{cookiecutter.beat}}-binary.yml
-	cp etc/{{cookiecutter.beat}}.yml               $(PREFIX)/{{cookiecutter.beat}}-darwin.yml
-	cp etc/{{cookiecutter.beat}}.yml               $(PREFIX)/{{cookiecutter.beat}}-win.yml
+.PHONY: init
+init:
+	glide update  --no-recursive
+	make update
+	git init
+
+.PHONY: commit
+commit:
+	git add README.md CONTRIBUTING.md
+	git commit -m "Initial commit"
+	git add LICENSE
+	git commit -m "Add the LICENSE"
+	git add .gitignore .gitattributes
+	git commit -m "Add git settings"
+	git add .
+	git reset -- .travis.yml
+	git commit -m "Add {{cookiecutter.beat}}"
+	git add .travis.yml
+	git commit -m "Add Travis CI"
 
 .PHONY: update-deps
 update-deps:
-	glide update  --no-recursive
+	glide update --no-recursive --strip-vcs
+
+# This is called by the beats packer before building starts
+.PHONY: before-build
+before-build:
