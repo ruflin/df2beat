@@ -5,3 +5,4 @@ vendor
 # Files
 df2beat
 glide.lock
+.DS_Store

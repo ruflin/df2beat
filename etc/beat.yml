@@ -4,4 +4,6 @@ metricbeat:
       metricsets: ["space"]
       period: 1s
       enabled: true
+      # Define filters
+      #filters:
 
