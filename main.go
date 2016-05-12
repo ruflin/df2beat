@@ -6,10 +6,9 @@ import (
 	"github.com/elastic/beats/metricbeat/beater"
 
 	// Uncomment the following line to include all official metricbeat module and metricsets
-	_ "github.com/elastic/beats/metricbeat/include"
+	//_ "github.com/elastic/beats/metricbeat/include"
 
 	// Make sure all your modules and metricsets are linked here
-	_ "github.com/ruflin/df2beat/module/disk"
 	_ "github.com/ruflin/df2beat/module/disk/space"
 
 	"github.com/elastic/beats/libbeat/beat"

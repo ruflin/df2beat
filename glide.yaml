@@ -1,7 +1,7 @@
 package: github.com/ruflin/df2beat
 import:
 - package: github.com/elastic/beats
-  version: c0baca74a3a9d87bea2ec3751ff937b7ec3f2514
+  version: 19215810bfa2d3e3af638f589e0713e5fb893765
   subpackages:
   - /libbeat/beat
   - metricbeat/beater

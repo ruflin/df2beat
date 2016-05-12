@@ -1,6 +1,7 @@
 # Folders
 .idea
 vendor
+build
 
 # Files
 df2beat
