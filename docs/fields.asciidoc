@@ -9,3 +9,81 @@ This file is generated! See etc/fields.yml and scripts/generate_field_docs.py
 This document describes the fields that are exported by Df2Beat. They are
 grouped in the following categories:
 
+* <<exported-fields-disk>>
+
+[[exported-fields-disk]]
+=== Disk Status Fields
+
+Disk status
+
+
+
+=== disk-space Fields
+
+`disk-space` contains local disk stats
+
+
+
+==== disk-space.avail
+
+type: long
+
+The disk space available to an unprivileged user in bytes.
+
+
+==== disk-space.device_name
+
+type: keyword
+
+The disk name. For example: `/dev/disk1`
+
+
+==== disk-space.mount_point
+
+type: keyword
+
+The mounting point. For example: `/`
+
+
+==== disk-space.files
+
+type: long
+
+The total number of file nodes in the file system.
+
+
+==== disk-space.free
+
+type: long
+
+The disk space available in bytes.
+
+
+==== disk-space.free_files
+
+type: long
+
+The number of free file nodes in the file system.
+
+
+==== disk-space.total
+
+type: long
+
+The total disk space in bytes.
+
+
+==== disk-space.used
+
+type: long
+
+The used disk space in bytes.
+
+
+==== disk-space.used_p
+
+type: float
+
+The percentage of used disk space.
+
+

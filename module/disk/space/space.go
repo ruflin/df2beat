@@ -3,26 +3,28 @@ package space
 import (
 	"github.com/elastic/beats/libbeat/common"
 	"github.com/elastic/beats/libbeat/logp"
-	"github.com/elastic/beats/metricbeat/helper"
 	"github.com/elastic/beats/topbeat/system"
+	"github.com/elastic/beats/metricbeat/mb"
 )
 
 func init() {
-	helper.Registry.AddMetricSeter("disk", "space", New)
+	if err := mb.Registry.AddMetricSet("disk", "space", New); err != nil {
+		panic(err)
+	}
 }
 
-// New creates new instance of MetricSeter
-func New() helper.MetricSeter {
-	return &MetricSeter{}
+type MetricSet struct{
+	mb.BaseMetricSet
 }
 
-type MetricSeter struct{}
-
-func (m *MetricSeter) Setup(ms *helper.MetricSet) error {
-	return nil
+// New creates and returns a new instance of MetricSet.
+func New(base mb.BaseMetricSet) (mb.MetricSet, error) {
+	return &MetricSet{
+		BaseMetricSet: base,
+	}, nil
 }
 
-func (m *MetricSeter) Fetch(ms *helper.MetricSet, host string) (event common.MapStr, err error) {
+func (m *MetricSet) Fetch() ([]common.MapStr, error) {
 
 	fss, err := system.GetFileSystemList()
 	if err != nil {
@@ -30,30 +32,16 @@ func (m *MetricSeter) Fetch(ms *helper.MetricSet, host string) (event common.Map
 		return nil, err
 	}
 
-	event = common.MapStr{}
-
+	filesSystems := make([]common.MapStr, 0, len(fss))
 	for _, fs := range fss {
 		fsStat, err := system.GetFileSystemStat(fs)
 		if err != nil {
-			logp.Debug("topbeat", "Skip filesystem %d: %v", fsStat, err)
+			logp.Debug("space", "error getting filesystem stats for '%s': %v", fs.DirName, err)
 			continue
 		}
-
-		fsEvent := common.MapStr{
-			fsStat.DevName: common.MapStr{
-				"device_name": fsStat.DevName,
-				"mount_point": fsStat.Mount,
-				"total":       fsStat.Total,
-				"used":        fsStat.Used,
-				"free":        fsStat.Free,
-				"avail":       fsStat.Avail,
-				"files":       fsStat.Files,
-				"free_files":  fsStat.FreeFiles,
-			},
-		}
-
-		event.Update(fsEvent)
+		system.AddFileSystemUsedPercentage(fsStat)
+		filesSystems = append(filesSystems, system.GetFilesystemEvent(fsStat))
 	}
 
-	return event, nil
+	return filesSystems, nil
 }
