@@ -1,0 +1,4 @@
+- module: disk
+  metricsets: ["space"]
+  enabled: true
+  period: 1s

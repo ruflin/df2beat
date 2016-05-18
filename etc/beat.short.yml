@@ -10,10 +10,4 @@
 #==========================  Modules configuration ============================
 metricbeat.modules:
 
-#----------------------------- Disk Status Module ----------------------------
-- module: disk
-  metricsets: ["space"]
-  enabled: true
-  period: 1s
-
 
