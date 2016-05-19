@@ -37,38 +37,42 @@
             }
           }
         },
-        "disk-space": {
+        "disk": {
           "properties": {
-            "avail": {
-              "type": "long"
-            },
-            "device_name": {
-              "ignore_above": 1024,
-              "index": "not_analyzed",
-              "type": "string"
-            },
-            "files": {
-              "type": "long"
-            },
-            "free": {
-              "type": "long"
-            },
-            "free_files": {
-              "type": "long"
-            },
-            "mount_point": {
-              "ignore_above": 1024,
-              "index": "not_analyzed",
-              "type": "string"
-            },
-            "total": {
-              "type": "long"
-            },
-            "used": {
-              "type": "long"
-            },
-            "used_p": {
-              "type": "float"
+            "space": {
+              "properties": {
+                "avail": {
+                  "type": "long"
+                },
+                "device_name": {
+                  "ignore_above": 1024,
+                  "index": "not_analyzed",
+                  "type": "string"
+                },
+                "files": {
+                  "type": "long"
+                },
+                "free": {
+                  "type": "long"
+                },
+                "free_files": {
+                  "type": "long"
+                },
+                "mount_point": {
+                  "ignore_above": 1024,
+                  "index": "not_analyzed",
+                  "type": "string"
+                },
+                "total": {
+                  "type": "long"
+                },
+                "used": {
+                  "type": "long"
+                },
+                "used_p": {
+                  "type": "float"
+                }
+              }
             }
           }
         },

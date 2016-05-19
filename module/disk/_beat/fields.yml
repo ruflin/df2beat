@@ -1,0 +1,10 @@
+- key: disk
+  title: "Disk Status"
+  description: >
+    Disk statsu metrics.
+  fields:
+    - name: disk
+      type: group
+      description: >
+        `disk` contains local disk metrics
+      fields:

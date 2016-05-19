@@ -1,0 +1,29 @@
+////
+This file is generated! See scripts/docs_collector.py
+////
+
+[[metricbeat-module-disk]]
+== Disk Module
+
+=== Example Configuration
+
+The Disk Status module supports the standard configuration options which can be found
+here (add link). Below is an example of a configuration option:
+
+[source,yaml]
+----
+metricbeat.modules:
+  - module: disk
+    metricsets: ["space"]
+    enabled: true
+    period: 1s
+----
+
+=== MetricSets
+
+The following MetricSets are available:
+
+* <<metricbeat-metricset-disk-space,space>>
+
+include::disk/space.asciidoc[]
+

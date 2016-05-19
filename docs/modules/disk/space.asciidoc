@@ -1,0 +1,14 @@
+////
+This file is generated! See scripts/docs_collector.py
+////
+
+[[metricbeat-metricset-disk-space]]
+=== Space MetricSet
+
+The Space MetricSet provides Space statistics.
+
+==== Fields
+
+A description of each field in the MetricSet can be found in the
+<<exported-fields-disk,exported fields>> section
+
